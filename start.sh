@@ -2,8 +2,8 @@
 
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PYTHON_SCRIPT="$SCRIPT_DIR/step1_json.py"
-PID_FILE="$SCRIPT_DIR/step1_json.pid"
+PYTHON_SCRIPT="$SCRIPT_DIR/step1.py"
+PID_FILE="$SCRIPT_DIR/step1.pid"
 LOG_FILE="$SCRIPT_DIR/start.log"
 VENV_DIR="$SCRIPT_DIR/venv"
 PYTHON_BIN="$VENV_DIR/bin/python"
