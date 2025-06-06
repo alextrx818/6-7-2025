@@ -35,6 +35,10 @@ step1_*.json
 step1.json
 step2.json  # ignore large data file
 
+# Exclude large JSON data files
+env/
+step2.json
+
 # Process ID files
 *.pid
 
