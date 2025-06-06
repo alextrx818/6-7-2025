@@ -1,0 +1,89 @@
+{
+  "test_timestamp": "2025-06-06T16:08:11.734105",
+  "username": "thenecpt",
+  "results": [
+    {
+      "request_num": 1,
+      "status_code": 200,
+      "duration": 0.27,
+      "timestamp": "2025-06-06T16:08:09.007950",
+      "headers": {
+        "Server": "nginx/1.20.1",
+        "Date": "Fri, 06 Jun 2025 16:08:08 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "77",
+        "Via": "1.1 google",
+        "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+      },
+      "content_length": 77,
+      "url": "https://api.thesports.com/v1/football/schedules",
+      "rate_limit_headers": {},
+      "response_type": "<class 'dict'>"
+    },
+    {
+      "request_num": 1,
+      "status_code": 200,
+      "duration": 0.24,
+      "timestamp": "2025-06-06T16:08:09.247716",
+      "headers": {
+        "Server": "nginx/1.20.1",
+        "Date": "Fri, 06 Jun 2025 16:08:09 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "77",
+        "Via": "1.1 google",
+        "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+      },
+      "content_length": 77,
+      "url": "https://api.thesports.com/v1/football/schedules",
+      "rate_limit_headers": {},
+      "response_type": "<class 'dict'>"
+    },
+    {
+      "request_num": 2,
+      "status_code": 200,
+      "duration": 0.24,
+      "timestamp": "2025-06-06T16:08:10.491252",
+      "headers": {
+        "Server": "nginx/1.20.1",
+        "Date": "Fri, 06 Jun 2025 16:08:10 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "77",
+        "Via": "1.1 google",
+        "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+      },
+      "content_length": 77,
+      "url": "https://api.thesports.com/v1/football/schedules",
+      "rate_limit_headers": {},
+      "response_type": "<class 'dict'>"
+    },
+    {
+      "request_num": 3,
+      "status_code": 200,
+      "duration": 0.24,
+      "timestamp": "2025-06-06T16:08:11.733556",
+      "headers": {
+        "Server": "nginx/1.20.1",
+        "Date": "Fri, 06 Jun 2025 16:08:11 GMT",
+        "Content-Type": "application/json",
+        "Content-Length": "77",
+        "Via": "1.1 google",
+        "Alt-Svc": "h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000"
+      },
+      "content_length": 77,
+      "url": "https://api.thesports.com/v1/football/schedules",
+      "rate_limit_headers": {},
+      "response_type": "<class 'dict'>"
+    }
+  ],
+  "summary": {
+    "total_requests": 4,
+    "status_codes": [
+      200,
+      200,
+      200,
+      200
+    ],
+    "error_types": [],
+    "success_rate": 1.0
+  }
+}

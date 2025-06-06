@@ -43,6 +43,14 @@ ensure_venv() {
             print_error "Failed to create virtual environment"
             return 1
         fi
+        
+        # Upgrade pip in the virtual environment
+        print_status "Upgrading pip in virtual environment..."
+        "$PYTHON_BIN" -m pip install --upgrade pip >> "$LOG_FILE" 2>&1
+        if [ $? -ne 0 ]; then
+            print_error "Failed to upgrade pip"
+            return 1
+        fi
     fi
     
     # Check if Python binary exists in venv
@@ -51,24 +59,39 @@ ensure_venv() {
         return 1
     fi
     
+    # Activate virtual environment (for current shell)
+    print_status "Activating virtual environment..."
+    source "$VENV_DIR/bin/activate"
+    if [ $? -ne 0 ]; then
+        print_error "Failed to activate virtual environment"
+        return 1
+    fi
+    
     # Install/upgrade required packages
     print_status "Checking and installing required packages..."
     
-    # List of required packages
-    REQUIRED_PACKAGES=("aiohttp" "python-dotenv" "psutil")
+    # List of required packages with proper module names for import testing
+    REQUIRED_PACKAGES=("aiohttp" "python-dotenv:dotenv" "psutil" "requests" "pytz")
     
-    for package in "${REQUIRED_PACKAGES[@]}"; do
-        if ! "$PYTHON_BIN" -c "import $package" 2>/dev/null; then
-            print_status "Installing $package..."
-            "$PIP_BIN" install "$package" >> "$LOG_FILE" 2>&1
+    for package_spec in "${REQUIRED_PACKAGES[@]}"; do
+        # Split package_spec into package name and import name (if different)
+        IFS=':' read -ra ADDR <<< "$package_spec"
+        package_name="${ADDR[0]}"
+        import_name="${ADDR[1]:-$package_name}"
+        
+        if ! "$PYTHON_BIN" -c "import $import_name" 2>/dev/null; then
+            print_status "Installing $package_name..."
+            "$PIP_BIN" install "$package_name" >> "$LOG_FILE" 2>&1
             if [ $? -ne 0 ]; then
-                print_error "Failed to install $package"
+                print_error "Failed to install $package_name"
                 return 1
             fi
+        else
+            print_status "$package_name is already installed"
         fi
     done
     
-    print_success "Virtual environment and dependencies are ready"
+    print_success "Virtual environment activated and dependencies are ready"
     return 0
 }
 
@@ -112,7 +135,10 @@ start_fetcher() {
     
     # Start the Python script in background using virtual environment
     cd "$SCRIPT_DIR"
-    nohup "$PYTHON_BIN" "$PYTHON_SCRIPT" --continuous >> "$LOG_FILE" 2>&1 &
+    
+    # Activate virtual environment and start the script
+    print_status "Starting Python script with activated virtual environment..."
+    source "$VENV_DIR/bin/activate" && nohup "$PYTHON_BIN" "$PYTHON_SCRIPT" --continuous >> "$LOG_FILE" 2>&1 &
     PID=$!
     
     # Save PID to file
