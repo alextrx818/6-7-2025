@@ -33,6 +33,7 @@ ENV/
 # JSON data files (optional - comment out if you want to include data)
 step1_*.json
 step1.json
+step2.json  # ignore large data file
 
 # Process ID files
 *.pid
